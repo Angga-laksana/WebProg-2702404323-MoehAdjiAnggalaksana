@@ -25,22 +25,23 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Category
           </a>
           <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-            <li><a class="dropdown-item" href="#">Data Science</a></li>
-            <li><a class="dropdown-item" href="#">Network Security</a></li>
+            @foreach(App\Models\Category::all() as $cat)
+              <li><a class="dropdown-item" href="{{ route('category.show', $cat->slug) }}">{{ $cat->name }}</a></li>
+            @endforeach
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Writers</a>
+          <a class="nav-link" href="{{ route('writers.index') }}">Writers</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About Us</a>
+          <a class="nav-link" href="{{ route('about') }}">About Us</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Popular</a>
